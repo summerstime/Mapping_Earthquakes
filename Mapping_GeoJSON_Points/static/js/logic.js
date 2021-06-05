@@ -27,20 +27,6 @@ let map = L.map('mapid', {
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
-// An array which will be used to store created cityMarkers
-var cityMarkers = [];
-
-for (var i = 0; i < cities.length; i++) {
-  // loop through the cities array, create a new marker, push it to the cityMarkers array
-  cityMarkers.push(
-    L.marker(cities[i].location).bindPopup("<h1>" + cities[i].name + "</h1>")
-  );
-}
-
-// Add all the cityMarkers to a new layer group.
-// Now we can handle them as one group instead of referencing each individually
-var cityLayer = L.layerGroup(cityMarkers);
-
 // Accessing the airport GeoJSON URL
 let airportData = "https://raw.githubusercontent.com/summerstime/Mapping_Earthquakes/main/majorAirports.json";
 
