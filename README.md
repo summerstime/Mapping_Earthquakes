@@ -1,4 +1,4 @@
-# Mapping Earthquakes
+# Mapping Earthquakes Challenge
 
 ## Objective
 * This project is to utilize Javascript, CSS, HTML, and Leaflet to map the world's earthquake data (GeoJSON).
