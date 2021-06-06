@@ -15,6 +15,13 @@ let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sate
   accessToken: API_KEY
 });
 
+// We create the second tile layer that will be the background of our map.
+let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+  maxZoom: 18,
+  accessToken: API_KEY
+});
+
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
   center: [40.7, -94.5],
@@ -25,7 +32,8 @@ let map = L.map('mapid', {
 // Create a base layer that holds all three maps.
 let baseMaps = {
   "Streets": streets,
-  "Satellite": satelliteStreets
+  "Satellite": satelliteStreets,
+  "Dark": dark
 };
 
 // 1. Add a 2nd layer group for the tectonic plate data.
@@ -134,7 +142,7 @@ legend1.onAdd = function () {
     "#ea2c2c"
   ];
   // Add title to the legend
-  div.innerHTML += '<b>All Earthquakes</b><br>'
+  div.innerHTML += '<b>All Earthquakes<br>Magnitude</b><br>'
   // Looping through our intervals to generate a label with a colored square for each interval.
   for (var i = 0; i < magnitudes.length; i++) {
     // console.log(colors[i]);
@@ -147,14 +155,14 @@ legend1.onAdd = function () {
 legend2.onAdd = function () {
   let div = L.DomUtil.create("div", "info legend");
 
-  const magnitudes = [0, 5, 6];
+  const magnitudes = [4.5, 5, 6];
   const colors = [
     "#98ee00",
     "#ee9c00",
     "#ea2c2c"
   ];
   // Add title to the legend
-  div.innerHTML += '<b>Major Earthquakes</b><br>'
+  div.innerHTML += '<b>Major Earthquakes<br>Magnitude</b><br>'
   // Looping through our intervals to generate a label with a colored square for each interval.
   for (var i = 0; i < magnitudes.length; i++) {
     console.log(colors[i]);
